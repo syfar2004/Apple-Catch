@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cdvx3jm0s2pn2"]
+
+[ext_resource type="Texture2D" uid="uid://cws101owanmtg" path="res://Apple.png" id="1_3ed3y"]
+
+[sub_resource type="GDScript" id="GDScript_7mycd"]
+script/source = "extends Area2D
+
+signal caught
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	position.y += 100 * delta
+	if position.y > 600:
+		position.y = 0
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.name == \"Player\":
+		caught.emit()
+		queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1lj4"]
+radius = 21.367752
+
+[node name="Apple" type="Area2D" unique_id=1604197851]
+scale = Vector2(1, 0.652)
+script = SubResource("GDScript_7mycd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=213101687]
+scale = Vector2(1, 1.5200002)
+texture = ExtResource("1_3ed3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=614492379]
+scale = Vector2(1.5940853, -2.3242495)
+shape = SubResource("CircleShape2D_b1lj4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
