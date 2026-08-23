@@ -2,10 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b7ftiwmjrxxtt" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="Script" uid="uid://db4jy0u62wefg" path="res://player.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://b0gwsp0ww81n4" path="res://score_label.gd" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cfxwvwgntl1j1" path="res://Player.png" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://cj1d1iesqbqwr" path="res://miss_line.gd" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://ckd6yx8g0hxjm" path="res://MissLine.png" id="6_272bh"]
+[ext_resource type="Script" uid="uid://bs0v6akee7e0r" path="res://lives_label.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://beixe047ug0dm" path="res://game_over_label.gd" id="8_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(59, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13qdw"]
+size = Vector2(1161, 12)
 
 [node name="Main" type="Node2D" unique_id=2018782395]
 script = ExtResource("1_h2yge")
@@ -21,3 +29,43 @@ texture = ExtResource("4_lquwl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1112922848]
 position = Vector2(1.5, -3)
 shape = SubResource("RectangleShape2D_xrivr")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1940371228]
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 26.0
+text = "Score: 0"
+script = ExtResource("4_1bvp3")
+
+[node name="MissLine" type="Area2D" parent="." unique_id=2059124002]
+position = Vector2(575, 630)
+script = ExtResource("5_7mycd")
+
+[node name="Sprite2D" type="Sprite2D" parent="MissLine" unique_id=217790865]
+texture = ExtResource("6_272bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MissLine" unique_id=2011340217]
+position = Vector2(0.5, 4)
+shape = SubResource("RectangleShape2D_13qdw")
+
+[node name="LivesLabel" type="Label" parent="." unique_id=1730681966]
+offset_left = 8.0
+offset_top = 27.0
+offset_right = 65.0
+offset_bottom = 50.0
+text = "Lives: 3"
+script = ExtResource("7_272bh")
+
+[node name="GameOverLabel" type="Label" parent="." unique_id=208630156]
+visible = false
+offset_left = 445.0
+offset_top = 252.0
+offset_right = 676.0
+offset_bottom = 339.0
+text = "Game Over !"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_5vw27")
+
+[connection signal="area_entered" from="MissLine" to="." method="_on_miss_line_area_entered"]
