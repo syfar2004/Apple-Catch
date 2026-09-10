@@ -7,7 +7,6 @@ var lives = 3
 
 func _ready() -> void:
 	spawn_apple()
-	spawn_apple()
 	
 func _on_apple_caught() -> void:
 	score += 1
@@ -40,3 +39,8 @@ func _input(event: InputEvent) -> void:
 		add_child(pause_menu)
 		pause_menu.position.x = 307
 		pause_menu.position.y = 53
+
+
+func _on_timer_timeout() -> void:
+	spawn_apple()
+	print("hello")
