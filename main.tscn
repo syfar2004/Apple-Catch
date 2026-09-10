@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ckd6yx8g0hxjm" path="res://MissLine.png" id="6_272bh"]
 [ext_resource type="Script" uid="uid://bs0v6akee7e0r" path="res://lives_label.gd" id="7_272bh"]
 [ext_resource type="Script" uid="uid://beixe047ug0dm" path="res://game_over_label.gd" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://dauf1uptv0jus" path="res://Ground.png" id="9_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(59, 84)
@@ -15,11 +16,24 @@ size = Vector2(59, 84)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13qdw"]
 size = Vector2(1161, 12)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xrivr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lj4"]
+size = Vector2(1155, 42)
+
 [node name="Main" type="Node2D" unique_id=2018782395]
 script = ExtResource("1_h2yge")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=375686429]
+offset_left = -57.0
+offset_top = -58.0
+offset_right = 1238.0
+offset_bottom = 730.0
+color = Color(0.0627451, 1, 0, 0.15686275)
+
 [node name="Player" type="CharacterBody2D" parent="." unique_id=539625730]
-position = Vector2(500, 550)
+physics_interpolation_mode = 1
+position = Vector2(500, -100)
 scale = Vector2(2, 2)
 script = ExtResource("3_1bvp3")
 
@@ -27,7 +41,7 @@ script = ExtResource("3_1bvp3")
 texture = ExtResource("4_lquwl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1112922848]
-position = Vector2(1.5, -3)
+position = Vector2(1.5, -1.5)
 shape = SubResource("RectangleShape2D_xrivr")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1940371228]
@@ -67,5 +81,16 @@ text = "Game Over !"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_5vw27")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=504041919]
+position = Vector2(575, 630)
+physics_material_override = SubResource("PhysicsMaterial_xrivr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=753661865]
+position = Vector2(2.5, 11)
+shape = SubResource("RectangleShape2D_b1lj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor" unique_id=136288249]
+texture = ExtResource("9_kek77")
 
 [connection signal="area_entered" from="MissLine" to="." method="_on_miss_line_area_entered"]

@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://ctyohcpie5608"]
+
+[ext_resource type="Script" uid="uid://b1i2q8i0joisp" path="res://play_button.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://cws101owanmtg" path="res://Apple.png" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://4wx1t8idyp8g" path="res://Tree.png" id="1_glbon"]
+[ext_resource type="FontFile" uid="uid://0jad4qnds0uk" path="res://Fonts/Chewy-Regular.ttf" id="1_jix8l"]
+[ext_resource type="Script" uid="uid://vt0gpvlmb8og" path="res://quit_button.gd" id="2_7vrkn"]
+
+[sub_resource type="Theme" id="Theme_jix8l"]
+default_font = ExtResource("1_jix8l")
+default_font_size = 100
+
+[sub_resource type="Theme" id="Theme_glbon"]
+default_base_scale = 0.04
+default_font = ExtResource("1_jix8l")
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_nlkkf"]
+default_font = ExtResource("1_jix8l")
+default_font_size = 45
+
+[node name="MainMenu" type="Control" unique_id=425621432]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=225555155]
+layout_mode = 0
+offset_left = -57.0
+offset_top = -58.0
+offset_right = 1238.0
+offset_bottom = 730.0
+color = Color(0.0627451, 1, 0, 0.15686275)
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=1565679956]
+position = Vector2(574.5, 359)
+scale = Vector2(3.26, 2.75)
+texture = ExtResource("1_glbon")
+
+[node name="Title" type="Label" parent="." unique_id=406515608]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 34.0
+offset_right = 1151.0
+offset_bottom = 168.0
+theme = SubResource("Theme_jix8l")
+theme_override_colors/font_color = Color(1, 0.120000005, 0.120000005, 0.9529412)
+theme_override_colors/font_shadow_color = Color(0.009109127, 0.14980601, 0.45037487, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "Apple Catch"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="PlayButton" type="Button" parent="." unique_id=1808282382]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 272.0
+offset_right = 843.0
+offset_bottom = 416.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_glbon")
+text = "Play"
+icon = ExtResource("1_fu7sn")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_06t4h")
+
+[node name="QuitButton" type="Button" parent="." unique_id=407211929]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 272.0
+offset_right = 438.0
+offset_bottom = 414.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_nlkkf")
+text = "Quit"
+icon = ExtResource("1_fu7sn")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_7vrkn")
+
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

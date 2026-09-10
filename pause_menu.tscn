@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://deab8jyagub02"]
+
+[ext_resource type="Texture2D" uid="uid://4wx1t8idyp8g" path="res://Tree.png" id="1_05uyy"]
+[ext_resource type="Script" uid="uid://xa21h755xauy" path="res://pause_menu.gd" id="1_mxa3g"]
+[ext_resource type="FontFile" uid="uid://0jad4qnds0uk" path="res://Fonts/Chewy-Regular.ttf" id="2_p81d2"]
+[ext_resource type="Texture2D" uid="uid://cws101owanmtg" path="res://Apple.png" id="3_2nc7s"]
+[ext_resource type="Script" uid="uid://qe1ip73afdo7" path="res://resume_button.gd" id="4_d3xb4"]
+[ext_resource type="Script" uid="uid://02addp5munc0" path="res://restart_button.gd" id="5_mxa3g"]
+[ext_resource type="Script" uid="uid://vt0gpvlmb8og" path="res://quit_button.gd" id="6_e8sti"]
+
+[sub_resource type="Theme" id="Theme_e8sti"]
+
+[sub_resource type="Theme" id="Theme_d3xb4"]
+default_base_scale = 0.04
+default_font = ExtResource("2_p81d2")
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_mxa3g"]
+default_font = ExtResource("2_p81d2")
+default_font_size = 45
+
+[node name="Control" type="Control" unique_id=238618175]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 307.0
+offset_top = 53.0
+offset_right = -293.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxa3g")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2005761735]
+custom_minimum_size = Vector2(552, 544)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = SubResource("Theme_e8sti")
+color = Color(0.81, 0.5535, 0, 0.19607843)
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=1784991668]
+position = Vector2(275.25003, 272.5)
+scale = Vector2(2.2299998, 1.9889708)
+texture = ExtResource("1_05uyy")
+
+[node name="ResumeButton" type="Button" parent="." unique_id=1499098217]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 44.0
+offset_top = 28.0
+offset_right = 242.0
+offset_bottom = 189.0
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_d3xb4")
+text = "Resume"
+icon = ExtResource("3_2nc7s")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_d3xb4")
+
+[node name="RestartButton" type="Button" parent="." unique_id=446842084]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 353.0
+offset_top = 190.0
+offset_right = 546.0
+offset_bottom = 352.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_d3xb4")
+toggle_mode = true
+keep_pressed_outside = true
+text = "Restart"
+icon = ExtResource("3_2nc7s")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_mxa3g")
+
+[node name="QuitButton" type="Button" parent="." unique_id=1501727218]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 96.0
+offset_top = 388.0
+offset_right = 244.0
+offset_bottom = 530.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_mxa3g")
+text = "Quit"
+icon = ExtResource("3_2nc7s")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_e8sti")
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ResumeButton" to="ResumeButton" method="_on_pressed"]
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]

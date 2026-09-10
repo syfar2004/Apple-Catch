@@ -1,10 +1,12 @@
 extends Node2D
 
 var apple_scene = preload("res://apple.tscn")
+var pause_menu = preload("res://pause_menu.tscn")
 var score = 0
 var lives = 3
 
 func _ready() -> void:
+	spawn_apple()
 	spawn_apple()
 	
 func _on_apple_caught() -> void:
@@ -30,3 +32,11 @@ func spawn_apple() -> void:
 	apple.position.x = randi_range(70,750)
 	
 	apple.caught.connect(_on_apple_caught)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		get_tree().paused = true
+		var pause_menu = pause_menu.instantiate()
+		add_child(pause_menu)
+		pause_menu.position.x = 307
+		pause_menu.position.y = 53
