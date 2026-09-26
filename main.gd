@@ -2,6 +2,7 @@ extends Node2D
 
 var apple_scene = preload("res://apple.tscn")
 var pause_menu = preload("res://pause_menu.tscn")
+var game_over = preload("res://GameOver.tscn")
 var score = 0
 var lives = 3
 
@@ -21,8 +22,11 @@ func _on_miss_line_area_entered(area: Area2D) -> void:
 		spawn_apple()
 		
 	if lives == 0:
-		$GameOverLabel.visible = true
 		get_tree().paused = true
+		var game_over = game_over.instantiate()
+		add_child(game_over)
+		game_over.position.x = 307
+		game_over.position.y = 53
 
 
 func spawn_apple() -> void:
@@ -43,4 +47,3 @@ func _input(event: InputEvent) -> void:
 
 func _on_timer_timeout() -> void:
 	spawn_apple()
-	print("hello")

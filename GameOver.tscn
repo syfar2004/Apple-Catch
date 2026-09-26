@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cvtw26ck0hwr0"]
+
+[ext_resource type="Texture2D" uid="uid://4wx1t8idyp8g" path="res://Tree.png" id="1_jywu3"]
+[ext_resource type="FontFile" uid="uid://0jad4qnds0uk" path="res://Fonts/Chewy-Regular.ttf" id="2_3y56u"]
+[ext_resource type="Texture2D" uid="uid://cws101owanmtg" path="res://Apple.png" id="3_ua7od"]
+[ext_resource type="Script" uid="uid://02addp5munc0" path="res://restart_button.gd" id="4_3fonj"]
+[ext_resource type="Script" uid="uid://vt0gpvlmb8og" path="res://quit_button.gd" id="5_758bs"]
+
+[sub_resource type="Theme" id="Theme_rr04i"]
+
+[sub_resource type="Theme" id="Theme_067b4"]
+default_base_scale = 0.04
+default_font = ExtResource("2_3y56u")
+default_font_size = 45
+
+[sub_resource type="Theme" id="Theme_w4h2f"]
+default_font = ExtResource("2_3y56u")
+default_font_size = 45
+
+[node name="Control" type="Control" unique_id=1074389542]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=509824765]
+custom_minimum_size = Vector2(552, 544)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = SubResource("Theme_rr04i")
+color = Color(0.81, 0.5535, 0, 0.19607843)
+
+[node name="Tree" type="Sprite2D" parent="." unique_id=463228545]
+position = Vector2(275.25003, 272.5)
+scale = Vector2(2.2299998, 1.9889708)
+texture = ExtResource("1_jywu3")
+
+[node name="RestartButton" type="Button" parent="." unique_id=1464299405]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 353.0
+offset_top = 190.0
+offset_right = 546.0
+offset_bottom = 352.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_067b4")
+toggle_mode = true
+keep_pressed_outside = true
+text = "Restart"
+icon = ExtResource("3_ua7od")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_3fonj")
+
+[node name="QuitButton" type="Button" parent="." unique_id=2002287008]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 205.0
+offset_right = 228.0
+offset_bottom = 347.0
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_w4h2f")
+text = "Quit"
+icon = ExtResource("3_ua7od")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_758bs")
+
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
